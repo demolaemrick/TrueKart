@@ -12,7 +12,7 @@ const Flex = styled(Box)({
 
 const Nav = () => {
   return (
-    <Paper component={Flex} square={true} px={4} py={2}>
+    <Paper component={Flex} square={true} px={4} py={2} mb={1}>
       {NAVITEMS.map((item, index) => (
         <Box key={index} sx={{ textAlign: 'center' }}>
           <Image
