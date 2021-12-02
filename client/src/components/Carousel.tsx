@@ -1,48 +1,59 @@
 import { FC, useEffect, useState, Children, cloneElement } from 'react';
 import { useSwipeable } from 'react-swipeable';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const Carousel = styled(Box)({
-  overflow: 'hidden',
-});
-
 type CarouselInnerProps = {
   transform: string;
 };
+type CarouselItemProps = {
+  width: number;
+};
+
+const Carousel = styled(Box)({
+  position: 'relative',
+  overflow: 'hidden',
+});
+
 const CarouselInner = styled(Box)<CarouselInnerProps>((props) => ({
   whiteSpace: 'nowrap',
   transition: 'transform .3s',
   transform: props.transform,
 }));
 
-const CarouselItem = styled(Box)({
+const CarouselItem = styled(Box)<CarouselItemProps>((props) => ({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
+  width: `${props.width}%`,
   height: '280px',
-  backgroundColor: 'green',
-  color: 'white',
-});
-
-const Indicators = styled(Box)((props) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  '& > button': {
-    margin: '5px',
-  },
-  '& > button.active': {
-    backgroundColor: 'green',
-    color: 'white',
-  },
 }));
 
-export const CarouselItemComponent: FC<{ width?: string }> = ({
+const Indicators = styled(Box)((props) => ({
+  position: 'absolute',
+  top: 'calc(50% - 70px)',
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}));
+
+const Icon = styled(Box)({
+  backgroundColor: '#fff',
+  padding: '50px 10px 50px 15px',
+  '&:nth-child(2)': {
+    padding: '50px 15px 50px 10px',
+  },
+});
+
+export const CarouselItemComponent: FC<CarouselItemProps> = ({
   children,
   width,
 }) => {
-  return <CarouselItem style={{ width: width }}>{children}</CarouselItem>;
+  return <CarouselItem width={width}>{children}</CarouselItem>;
 };
 
 const CustomCarousel: FC = ({ children }) => {
@@ -77,6 +88,7 @@ const CustomCarousel: FC = ({ children }) => {
     onSwipedLeft: () => updateIndex(activeIndex + 1),
     onSwipedRight: () => updateIndex(activeIndex - 1),
   });
+
   const transformValue = `translateX(-${activeIndex * 100}%)`;
 
   return (
@@ -86,13 +98,17 @@ const CustomCarousel: FC = ({ children }) => {
       onMouseLeave={() => setPaused(false)}
     >
       <CarouselInner transform={transformValue}>
-        {Children.map(children, (child: any, index) => {
-          return cloneElement(child, { width: '100%' });
+        {Children.map(children, (child: any) => {
+          return cloneElement(child);
         })}
       </CarouselInner>
       <Indicators>
-        <button onClick={() => updateIndex(activeIndex - 1)}>Prev</button>
-        <button onClick={() => updateIndex(activeIndex + 1)}>Next</button>
+        <Icon onClick={() => updateIndex(activeIndex - 1)}>
+          <ArrowBackIosNewIcon fontSize="large" />
+        </Icon>
+        <Icon onClick={() => updateIndex(activeIndex + 1)}>
+          <ArrowForwardIosIcon fontSize="large" />
+        </Icon>
       </Indicators>
     </Carousel>
   );
