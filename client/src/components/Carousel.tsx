@@ -1,4 +1,11 @@
-import { FC, useEffect, useState, Children, cloneElement } from 'react';
+import {
+  FC,
+  ReactElement,
+  useEffect,
+  useState,
+  Children,
+  cloneElement,
+} from 'react';
 import { useSwipeable } from 'react-swipeable';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -32,7 +39,7 @@ const CarouselItem = styled(Box)<CarouselItemProps>((props) => ({
   height: '280px',
 }));
 
-const Indicators = styled(Box)((props) => ({
+const Arrrows = styled(Box)((props) => ({
   position: 'absolute',
   top: 'calc(50% - 70px)',
   display: 'flex',
@@ -98,18 +105,18 @@ const CustomCarousel: FC = ({ children }) => {
       onMouseLeave={() => setPaused(false)}
     >
       <CarouselInner transform={transformValue}>
-        {Children.map(children, (child: any) => {
-          return cloneElement(child);
+        {Children.map(children, (child) => {
+          return cloneElement(child as ReactElement<any>);
         })}
       </CarouselInner>
-      <Indicators>
+      <Arrrows>
         <Icon onClick={() => updateIndex(activeIndex - 1)}>
           <ArrowBackIosNewIcon fontSize="large" />
         </Icon>
         <Icon onClick={() => updateIndex(activeIndex + 1)}>
           <ArrowForwardIosIcon fontSize="large" />
         </Icon>
-      </Indicators>
+      </Arrrows>
     </Carousel>
   );
 };
