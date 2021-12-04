@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Head from 'next/head';
 import Header from './Header';
+import Nav from './Nav';
 
 const Layout: FC = ({ children }) => {
   return (
@@ -11,7 +12,8 @@ const Layout: FC = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <Nav />
+      <main style={{ padding: '0 8px' }}>{children}</main>
     </div>
   );
 };
