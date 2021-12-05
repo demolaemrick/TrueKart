@@ -12,9 +12,9 @@ const DealSection = () => {
           <SliderImageContainer>
             <img src={item.url} alt="TrueKart image" />
           </SliderImageContainer>
-          <Typography variant="subtitle1">Tracksuit</Typography>
-          <Typography variant="subtitle1">Under $250</Typography>
-          <Typography variant="subtitle1">Men's Shoes</Typography>
+          <Typography variant="subtitle1">{item.title.shortTitle}</Typography>
+          <Typography variant="subtitle1">{item.discount}</Typography>
+          <Typography variant="subtitle1">{item.tagline}</Typography>
         </SliderItem>
       ))}
     </Slider>
