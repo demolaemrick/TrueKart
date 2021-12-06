@@ -1,4 +1,5 @@
 import { FC, Children, ReactElement, cloneElement } from 'react';
+import Link from 'next/link';
 import Slider from 'react-slick';
 import { Paper, Typography, Divider, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -7,6 +8,15 @@ import Countdown from 'react-countdown';
 import { CustomForwardArrow, CustomPrevArrow } from './CustomArrow';
 
 import { AppProps } from '../types';
+
+interface SliderProps extends AppProps {
+  title: string;
+}
+interface RendererArgs {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
 
 export const SliderItem = styled(Box)({
   textAlign: 'center',
@@ -29,16 +39,8 @@ const Timer = styled(Box)({
   alignItems: 'center',
 });
 
-interface SliderProps extends AppProps {
-  title: string;
-}
-interface RendererArgs {
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
 const SliderComponent: FC<SliderProps> = ({ children, title }) => {
-  const timerImageURL =
+  const timerImageURL: string =
     'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
 
   const renderer = ({ hours, minutes, seconds }: RendererArgs) => {
@@ -49,7 +51,6 @@ const SliderComponent: FC<SliderProps> = ({ children, title }) => {
     );
   };
   const settings = {
-    className: 'container',
     dots: false,
     infinite: true,
     speed: 500,
