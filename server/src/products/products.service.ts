@@ -13,4 +13,8 @@ export class ProductsService {
   async getAllProducts(): Promise<Product[]> {
     return this.productModel.find().exec();
   }
+
+  async getProduct(productId: string): Promise<Product> {
+    return this.productModel.findById(productId).exec();
+  }
 }
