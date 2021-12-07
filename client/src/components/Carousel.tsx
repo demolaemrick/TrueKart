@@ -51,7 +51,7 @@ const Arrrows = styled(Box)((props) => ({
 const Icon = styled(Box)({
   backgroundColor: '#fff',
   padding: '50px 10px 50px 15px',
-  '&:nth-child(2)': {
+  '&:nth-of-type(2)': {
     padding: '50px 15px 50px 10px',
   },
 });
