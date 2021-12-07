@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 
 const IMAGES = [
@@ -17,8 +16,8 @@ const Advertisement = () => {
   return (
     <>
       <Grid container spacing={2} mt={2}>
-        {IMAGES.map((image) => (
-          <Grid md={4} item>
+        {IMAGES.map((image, index) => (
+          <Grid key={index} md={4} item>
             <img src={image} style={imageStyle} />
           </Grid>
         ))}
