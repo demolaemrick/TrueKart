@@ -1,14 +1,15 @@
+import { FC } from 'react';
 import Link from 'next/link';
 import { Typography } from '@mui/material';
 import Slider, { SliderItem, SliderImageContainer } from './Slider';
 
-import { DEAL_DATA } from '../constants/data';
+import { Product } from '../types';
 
-const DealSection = () => {
+const DealSection: FC<{ products: Product[] }> = ({ products }) => {
   return (
     <Slider title="Deals of the Day">
-      {DEAL_DATA.map((item) => (
-        <Link href="/product">
+      {products.map((item: Product) => (
+        <Link href="/product" key={item._id}>
           <SliderItem py={4}>
             <SliderImageContainer>
               <img src={item.url} alt="TrueKart image" />
