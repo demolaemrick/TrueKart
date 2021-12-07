@@ -12,7 +12,7 @@ export class ProductsController {
   }
 
   @Get(':productId')
-  getProductById(@Param() productId: string): string {
-    return `This action returns a #${productId} product`;
+  getProductById(@Param('productId') productId: string): Promise<Product> {
+    return this.productsService.getProduct(productId);
   }
 }
