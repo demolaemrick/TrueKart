@@ -1,5 +1,5 @@
 import { FC, Children, ReactElement, cloneElement } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 import Slider from 'react-slick';
 import { Paper, Typography, Divider, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -23,13 +23,15 @@ export const SliderItem = styled(Box)({
 });
 
 export const SliderImageContainer = styled(Box)({
+  position: 'relative',
   width: '200px',
   height: '180px',
   margin: '0 auto',
 
-  '& img': {
+  '& .image': {
     height: '100%',
     margin: '0 auto',
+    objectFit: 'contain',
   },
 });
 const Timer = styled(Box)({
@@ -65,7 +67,7 @@ const SliderComponent: FC<SliderProps> = ({ children, title }) => {
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Typography variant="h5">{title}</Typography>
         <Timer>
-          <img src={timerImageURL} style={{ width: 24 }} alt="time clock" />
+          <Image src={timerImageURL} width={24} height={24} alt="time clock" />
           <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
         </Timer>
       </Box>
