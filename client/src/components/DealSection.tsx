@@ -14,7 +14,7 @@ const DealSection: FC<{ products: Product[] }> = ({ products }) => {
           <SliderItem py={4}>
             <SliderImageContainer>
               <Image
-                src={item.url}
+                src={item.imageUrl}
                 alt="TrueKart image"
                 layout="fill"
                 className={'image'}
