@@ -13,8 +13,7 @@ interface Price {
 
 export interface Product extends Document {
   readonly _id: string;
-  readonly url: string;
-  readonly detailUrl: string;
+  readonly imageUrl: string;
   readonly title: Title;
   readonly price: Price;
   readonly quantity: number;
