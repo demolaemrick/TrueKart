@@ -11,8 +11,7 @@ interface Price {
 
 export declare interface Product {
   _id: string;
-  url: string;
-  detailUrl: string;
+  imageUrl: string;
   title: Title;
   price: Price;
   quantity: number;
