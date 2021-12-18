@@ -1,9 +1,13 @@
-import { FC } from 'react';
 import { Box } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import { styled } from '@mui/material/styles';
+
+interface ArrowProps {
+  className?: string;
+  onClick?: () => void;
+}
 
 const Icon = styled(Box)({
   backgroundColor: 'red',
@@ -32,11 +36,7 @@ const Icon = styled(Box)({
   },
 });
 
-type ArrowProps = {
-  onClick: () => void;
-};
-
-export const CustomForwardArrow = ({ className, onClick }: any) => {
+export const CustomForwardArrow = ({ className, onClick }: ArrowProps) => {
   return (
     <Icon className={className} onClick={onClick}>
       <ArrowForwardIosIcon sx={{ color: 'white' }} fontSize="large" />
@@ -44,7 +44,7 @@ export const CustomForwardArrow = ({ className, onClick }: any) => {
   );
 };
 
-export const CustomPrevArrow = ({ className, onClick }: any) => {
+export const CustomPrevArrow = ({ className, onClick }: ArrowProps) => {
   return (
     <Icon className={className} onClick={onClick}>
       <ArrowBackIosNewIcon sx={{ color: 'white' }} fontSize="large" />
