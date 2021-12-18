@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { InferGetServerSidePropsType } from 'next';
-import Layout from '../components/Layout';
+
+import Nav from '../components/Nav';
 import Banner from '../components/Banner';
 import DealSection from '../components/DealSection';
 import Advertisement from '../components/Advertisement';
@@ -18,11 +19,12 @@ const Home = ({
     dispatch(fetchProducts(data));
   }, []);
   return (
-    <Layout>
+    <>
+      <Nav />
       <Banner />
       <DealSection products={data} />
       <Advertisement />
-    </Layout>
+    </>
   );
 };
 
