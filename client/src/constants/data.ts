@@ -102,3 +102,12 @@ export const DEAL_DATA = [
     tagline: 'Ab Exerciser, Yoga & more',
   },
 ];
+
+export const OFFERS = [
+  '10% off upto $400 on UPI Payments',
+  'Flat $100 off on first Flipkart Pay Later order of $500 and above',
+  '10% off on SBI Credit Card, up to $1500. On orders of $500 and above',
+  '5% Unlimited Cashback on Flipkart Axis Bank Credit Card',
+  '20% off on 1st txn with Amex Network Cards issued by ICICI Bank,IndusInd Bank,SBI Cards and Mobikwik',
+  'Extra 10% off upto 1000 on SBI Debit Card',
+];
