@@ -20,6 +20,9 @@ export declare interface Product {
   tagline: string;
 }
 
+export declare interface ICart extends Product {
+  cartQuantity: number;
+}
 export declare interface AppProps {
   children: React.ReactNode;
 }
