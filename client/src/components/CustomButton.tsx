@@ -4,23 +4,34 @@ import { styled } from '@mui/material/styles';
 
 interface IButtonProps {
   children?: ReactNode;
-  backgroundColor: string;
+  backgroundcolor: string;
   icon?: ReactNode;
+  click?: () => void;
 }
 
 const Button = styled(MuiButton)<IButtonProps>((props) => ({
-  backgroundColor: `${props.backgroundColor}`,
+  backgroundColor: `${props.backgroundcolor}`,
   color: '#fff',
   padding: '10px 8px',
   borderRadius: '2px',
   boxShadow: '0 1px 2px 0 rgb(0 0 0 / 20%)',
   '&:hover': {
-    backgroundColor: `${props.backgroundColor}`,
+    backgroundColor: `${props.backgroundcolor}`,
   },
 }));
-const CustomButton = ({ children, backgroundColor, icon }: IButtonProps) => {
+const CustomButton = ({
+  children,
+  backgroundcolor,
+  icon,
+  click,
+}: IButtonProps) => {
   return (
-    <Button backgroundColor={backgroundColor} startIcon={icon}>
+    <Button
+      backgroundcolor={backgroundcolor}
+      startIcon={icon}
+      onClick={click}
+      disableRipple
+    >
       {children}
     </Button>
   );
