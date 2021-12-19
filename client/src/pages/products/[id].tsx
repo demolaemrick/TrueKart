@@ -1,5 +1,7 @@
 import { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Image from 'next/image';
+import Router from 'next/router';
+
 import { Grid, Box, Typography, Container } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
@@ -7,6 +9,9 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { styled } from '@mui/material/styles';
 
 import Button from '../../components/CustomButton';
+
+import { useAppDispatch } from '../../hooks/store';
+import { addItemToCart as addToCart } from '../../store/cart';
 
 import { OFFERS } from '../../constants/data';
 import { Product } from '../../types';
@@ -50,7 +55,7 @@ const Row = styled(Box)({
   marginTop: '20px',
   columnGap: '20px',
 
-  '& > p:first-child': {
+  '& > p:first-of-type': {
     color: '#878787',
     fontWeight: 500,
   },
@@ -62,12 +67,18 @@ const Row = styled(Box)({
 const ProductDetail = ({
   product,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const dispatch = useAppDispatch();
   const fassured =
     'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
   const adURL =
     'https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019-07-14.png?q=50';
   const date = new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000);
 
+  const addItemToCart = (item: Product) => {
+    const newItem = { ...item, cartQuantity: 1 };
+    dispatch(addToCart(newItem));
+    Router.push('/cart');
+  };
   return (
     <Container>
       <Grid container mt={4} spacing={4}>
@@ -79,10 +90,14 @@ const ProductDetail = ({
             </ImageContainer>
           </Box>
           <ButtonContainer>
-            <Button backgroundColor="orange" icon={<ShoppingCartIcon />}>
+            <Button
+              backgroundcolor="#fb641b"
+              icon={<ShoppingCartIcon />}
+              click={() => addItemToCart(product)}
+            >
               Go to Cart
             </Button>
-            <Button backgroundColor="green" icon={<FlashOnIcon />}>
+            <Button backgroundcolor="green" icon={<FlashOnIcon />}>
               Buy Now
             </Button>
           </ButtonContainer>
@@ -152,7 +167,7 @@ const ProductDetail = ({
               <Row>
                 <Typography variant="body1">Delivery</Typography>
                 <Typography variant="body1">
-                  Delivery by {date.toDateString()} | ₹40
+                  Delivery by {date.toDateString()} | $40
                 </Typography>
               </Row>
               <Row>
@@ -166,7 +181,7 @@ const ProductDetail = ({
                     SuperComNet
                   </Typography>
                   <Typography>GST invoice available</Typography>
-                  <Typography>View more sellers starting from ₹329</Typography>
+                  <Typography>View more sellers starting from $329</Typography>
                 </Box>
               </Row>
               <Row>
