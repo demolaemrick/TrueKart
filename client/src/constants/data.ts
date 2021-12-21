@@ -111,3 +111,6 @@ export const OFFERS = [
   '20% off on 1st txn with Amex Network Cards issued by ICICI Bank,IndusInd Bank,SBI Cards and Mobikwik',
   'Extra 10% off upto 1000 on SBI Debit Card',
 ];
+
+export const FASSURED =
+  'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
